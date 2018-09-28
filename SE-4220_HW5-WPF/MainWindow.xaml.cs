@@ -13,13 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SE_4220_HW5_WPF
+namespace HW5
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        ColumnDefinition UiMenuCol;
+
         public MainWindow()
         {
             InitializeComponent();

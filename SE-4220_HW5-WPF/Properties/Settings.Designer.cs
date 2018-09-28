@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SE_4220_HW5_WPF.Properties
+namespace HW5.Properties
 {
 
 

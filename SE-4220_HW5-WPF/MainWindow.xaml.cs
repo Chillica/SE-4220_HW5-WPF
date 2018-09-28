@@ -20,7 +20,6 @@ namespace HW5
     /// </summary>
     public partial class MainWindow : Window
     {
-        ColumnDefinition UiMenuCol;
 
         public MainWindow()
         {

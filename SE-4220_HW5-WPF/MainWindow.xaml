@@ -54,11 +54,6 @@
             <MenuItem Header="File" Margin="0,1,0,-1" Foreground="#FAC18C">
                 <MenuItem Header="New Character" Style="{StaticResource DropMenuItem}"  />
                 <MenuItem Header="Character List"  Style="{StaticResource DropMenuItem}" />
-                <!--<MenuItem Command="New" Style="{StaticResource DropMenuItem}" />
-                <MenuItem Command="Open" Style="{StaticResource DropMenuItem}"/>
-                <MenuItem Command="Save" Style="{StaticResource DropMenuItem}"/>
-                <Separator />
-                <MenuItem Command="Close" Style="{StaticResource DropMenuItem}" />-->
             </MenuItem>
             <MenuItem Header="Edit" Foreground="#FAC18C">
                 <MenuItem Command="Copy" Style="{StaticResource DropMenuItem}" />
@@ -72,7 +67,8 @@
                 <ColumnDefinition Width="5*" />
             </Grid.ColumnDefinitions>
             <Border Panel.ZIndex="1" Grid.Column="0">
-                <StackPanel Orientation="Horizontal" Background="#184150">
+                <StackPanel Background="#184150" CanVerticallyScroll="True">
+                    <TextBlock Margin="5,5,5,0" FontSize="18">Characters:</TextBlock>
                     <ListBox ItemsSource="{Binding Characters}"
                  SelectedItem="{Binding SelectedCharacter}"
                  Margin="5">
@@ -98,12 +94,32 @@
                 </Grid.RowDefinitions>
 
             <Border BorderBrush="#ffffff" BorderThickness="0,0,0,2">
-                <DockPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
                     <Label Style="{StaticResource FormLabeling}" FontSize="18">Traits:</Label>
-                    <ComboBox Margin="5,10" ItemsSource="{Binding TraitList}" SelectedItem="{Binding SelectedTrait, Mode=TwoWay}" />
-                </DockPanel>
+                    <ComboBox ItemsSource="{Binding TraitList}" 
+                              SelectedIndex="0" 
+                              SelectedItem="{Binding SelectedTrait, Mode=TwoWay}"
+                              Grid.Column="1"
+                              VerticalAlignment="Center"
+                              Margin="0,5"/>
+                    <Button Grid.Column="2" 
+                            MaxWidth="80" 
+                            Background="Green" 
+                            Foreground="White" 
+                            FontSize="18" 
+                            BorderThickness="0"
+                            Margin="0,5">Edit</Button>
+                </Grid>
             </Border>
-                <TextBlock Grid.Row="1" HorizontalAlignment="Center" Text="{Binding SelectedCharacter.Name}" FontSize="18" />
+                <StackPanel Grid.Row="1"  HorizontalAlignment="Center" Orientation="Horizontal">
+                    <TextBlock Text="{Binding SelectedCharacter.Name}" FontSize="18" Margin="5" />
+                    
+                </StackPanel>
                 <Grid DataContext="{Binding SelectedCharacter}"
               Margin="5" Grid.Row="2">
                     <Grid.RowDefinitions>
@@ -121,22 +137,22 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Row="2"
                        Text="First Name" />
-                    <TextBox Grid.Row="2"
+                    <TextBlock Grid.Row="2"
                      Grid.Column="3"
                      Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged, FallbackValue='Select a person on the left...'}" />
                     <TextBlock Grid.Row="3"
                        Text="Last Name" />
-                    <TextBox Grid.Row="3"
+                    <TextBlock Grid.Row="3"
                      Grid.Column="1"
                      Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged, FallbackValue='Select a person on the left...'}" />
                     <TextBlock Grid.Row="4"
                        Text="Weight" />
-                    <TextBox Grid.Row="4"
+                    <TextBlock Grid.Row="4"
                      Grid.Column="1"
                      Text="{Binding Weight, UpdateSourceTrigger=PropertyChanged, FallbackValue='Select a person on the left...'}" />
                     <TextBlock Grid.Row="5"
                        Text="Height" />
-                    <TextBox Grid.Row="5"
+                    <TextBlock Grid.Row="5"
                      Grid.Column="1"
                      Text="{Binding Height, UpdateSourceTrigger=PropertyChanged, FallbackValue='Select a person on the left...'}" />
                 </Grid>

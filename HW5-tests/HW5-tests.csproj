@@ -54,6 +54,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SE-4220_HW5-WPF\SE-4220_HW5-WPF.csproj">
+      <Project>{a62775d0-0b97-4638-a8b2-98ff9020fa8b}</Project>
+      <Name>SE-4220_HW5-WPF</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

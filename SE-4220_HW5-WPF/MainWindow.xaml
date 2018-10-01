@@ -33,6 +33,7 @@
             <Setter Property="Background" Value="#517DAE" />
             <Setter Property="BorderBrush" Value="#183C5E" />
         </Style>
+        <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
     </Window.Resources>
     <Window.DataContext>
         <vm:MainViewModel />
@@ -53,7 +54,9 @@
             </Menu.ItemsPanel>
             <MenuItem Header="File" Margin="0,1,0,-1" Foreground="#FAC18C">
                 <MenuItem Header="New Character" Style="{StaticResource DropMenuItem}"  />
-                <MenuItem Header="Character List"  Style="{StaticResource DropMenuItem}" />
+                <MenuItem Header="Character List"  
+                          Style="{StaticResource DropMenuItem}" 
+                          Command="{Binding CharViewListCommand}" />
             </MenuItem>
             <MenuItem Header="Edit" Foreground="#FAC18C">
                 <MenuItem Command="Copy" Style="{StaticResource DropMenuItem}" />
@@ -63,10 +66,11 @@
         </Menu>
         <Grid DockPanel.Dock="Left" Name="UiGrid">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="5*" />
             </Grid.ColumnDefinitions>
-            <Border Panel.ZIndex="1" Grid.Column="0">
+            <Border Panel.ZIndex="1" Grid.Column="0" Visibility="{Binding IsCharListOpen, 
+                    Converter={StaticResource booleanToVisibilityConverter}}">
                 <StackPanel Background="#184150" CanVerticallyScroll="True">
                     <TextBlock Margin="5,5,5,0" FontSize="18">Characters:</TextBlock>
                     <ListBox ItemsSource="{Binding Characters}"

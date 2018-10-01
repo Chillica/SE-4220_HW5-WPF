@@ -8,10 +8,11 @@ using System.Runtime.CompilerServices;
 
 namespace HW5.ViewModel
 {
-    class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : INotifyPropertyChanged
     {
         public BindingList<Character> Characters { get; set; }
         public List<string> CharacterTraits { get; set; }
+        private readonly DelegateCommand<string> _clickCharViewListCommand;
 
         public MainViewModel()
         {
@@ -30,7 +31,47 @@ namespace HW5.ViewModel
                 "Emotional",
                 "Spiritual"
             });
+
+            _clickCharViewListCommand = new DelegateCommand<string>(
+                (s) => 
+                { /* perform some action */
+                    if (IsCharListOpen == false)
+                        IsCharListOpen = true;
+                    else
+                        IsCharListOpen = false;
+                }, //Execute
+                (s) => { return !string.IsNullOrEmpty(_input); } //CanExecute
+           );
+
         }
+
+        public DelegateCommand<string> CharViewListCommand
+        {
+            get { return _clickCharViewListCommand; }
+        }
+
+        private string _input = "can execute";
+        public string Input
+        {
+            get { return _input; }
+            set
+            {
+                _input = value;
+                _clickCharViewListCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        private bool isCharListOpen;
+        public bool IsCharListOpen
+        {
+            get { return isCharListOpen; }
+            set
+            {
+                isCharListOpen = value;
+                OnPropertyChanged(nameof(IsCharListOpen));
+            }
+        }
+
         public string SelectedTrait { get; set; }
         //private List<string> SelectedTrait;
         public List<string> TraitList

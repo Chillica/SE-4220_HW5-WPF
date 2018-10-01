@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HW5
 {
-    class Character
+    public class Character
     {
         private string lastName, firstName, height, weight;
         /*
